@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: app-exchange
+  cloud:
+    config:
+      name: app-exchange
+  webflux:
+    base-path: /demo/ibk/v1
+  profiles:
+    include: h2
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      console.settings.trace: false
+      spring.h2.console.settings.web-allow-others: false
+  datasource:
+    url: jdbc:h2:mem:javatpoint
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+webclientexample:
+  postsapi:
+    h2-console-port: 8081
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: never
+    include-exception: false
+  port: 8080
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: TRACE
+        SQL: DEBUG
+      springframework:
+        jdbc:
+          core:
+            StatementCreatorUtils: trace
+            JdbcTemplate: debug
+
+
+springbootwebfluxjjwt:
+  jjwt:
+    expiration: 28800
+    secret: ThisIsSecretForJWTHS512SignatureAlgorithmThatMUSTHave64ByteLength
+  password:
+    encoder:
+      keylength: 256
+      iteration: 33
+      secret: mysecret
